@@ -1,0 +1,11 @@
+---
+- name: Start {{ docker_name }} docker container
+  docker_container:
+    name: '{{ docker_name }}'
+    image: 'frankjoshua/ros-jviz:{{ cpu_arch }}'
+    ports:
+      - '80:3000'
+    restart_policy: 'unless-stopped'
+    env:
+      ROS_MASTER_URI: '{{ ros_master_uri }}'
+      ROS_IP: '{{ ros_ip }}'
