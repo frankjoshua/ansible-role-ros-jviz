@@ -2,10 +2,12 @@
 - name: Start {{ docker_name }} docker container
   docker_container:
     name: '{{ docker_name }}'
-    image: 'frankjoshua/ros-jviz:{{ cpu_arch }}'
+    image: '{{ docker_image }}'
     ports:
       - '{{ port }}:3000'
     restart_policy: 'unless-stopped'
+    pull: '{{ pull_image }}'
     env:
       ROS_MASTER_URI: '{{ ros_master_uri }}'
       ROS_IP: '{{ ros_ip }}'
+  register: container_status
